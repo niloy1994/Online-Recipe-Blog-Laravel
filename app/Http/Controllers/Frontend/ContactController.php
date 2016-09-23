@@ -19,7 +19,7 @@ class ContactController extends Controller{
         $subject = Input::get('subject');
         $txt = Input::get('message');
         $email=Input::get('email');
-        $headers .= "From: $email" . "\r\n" ;
+        $headers = "From:".$email." \r \n" ;
         /*echo '<pre>';
         print_r($headers);
         die;*/
