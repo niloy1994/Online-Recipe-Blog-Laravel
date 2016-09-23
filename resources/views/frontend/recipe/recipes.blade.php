@@ -28,7 +28,7 @@
                                             <figcaption><a href="{{URL::to('/recipes')."/".$recipe->id}}"><i class="ico i-view"></i> <span>View recipe</span></a></figcaption>
                                         </figure>
                                         <div class="container">
-                                            <h2><a href="recipe.html">{{$recipe->name}}</a></h2>
+                                            <h2><a href="{{URL::to('/recipes')."/".$recipe->id}}">{{$recipe->name}}</a></h2>
                                             <div class="actions">
                                                 <div>
                                                     @if ($recipe->difficulty=='easy')
@@ -51,7 +51,7 @@
 
 
          						<div class="quicklinks">
-         							<a href="#" class="button">More recipes</a>
+         							<a href="{{URL::to('/recipes')}}" class="button">More recipes</a>
          							<a href="javascript:void(0)" class="button scroll-to-top">Back to top</a>
          						</div>
          					</div>

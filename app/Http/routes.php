@@ -103,6 +103,7 @@ Route::get('/submit_recipe','Frontend\RecipeController@submit_recipe');
 Route::post('/recipe/save','Frontend\RecipeController@save');
 Route::post('/recipe/post_comment','Frontend\RecipeController@post_comment');
 Route::post('/recipe/post_like','Frontend\RecipeController@post_like');
+Route::get('/search_recipe','Frontend\RecipeController@search_recipe');
 
 /////blogs
 Route::get('/blogs','Frontend\BlogController@blogs');

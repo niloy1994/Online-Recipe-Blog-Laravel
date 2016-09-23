@@ -50,7 +50,7 @@
                       <li class="medium"><a href="{{URL::to('/login')}}" title="login"><i class="ico i-account"></i> <span>Login</span></a></li>
 
                     @endif
-                    <li class="light"><a href="find_recipe.html" title="Search for recipes"><i class="ico i-search"></i> <span>Search recipe</span></a></li>
+                    <li class="light"><a href="{{URL::to('/search_recipe')}}" title="Search for recipes"><i class="ico i-search"></i> <span>Search recipe</span></a></li>
 
 
 				</ul>

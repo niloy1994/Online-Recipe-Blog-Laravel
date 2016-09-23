@@ -152,6 +152,8 @@ class RecipeController extends Controller{
     public function recipes(){
         $category_id = Input::get('category_id');
         $recipe_name=Input::get('name');
+        $ingredient=Input::get('ingredient');
+
 
         if(!empty($category_id)){
             $categories = category::all();
@@ -169,18 +171,38 @@ class RecipeController extends Controller{
             return view('Frontend.recipe.recipes',array('recipes' => $recipes,'categories'=>$categories));
         }
         else if(!empty($recipe_name)){
+
             $categories = category::all();
             $recipes=DB::select("SELECT recipes.*,recipe_image.image,(SELECT count(id) FROM likes WHERE likes.recipe_id=recipes.id) as num_of_likes,
                     (SELECT count(id) FROM comment WHERE comment.recipe_id=recipes.id) as num_of_comments FROM recipes
-                    LEFT JOIN recipe_image ON recipe_image.recipe_id = recipes.id WHERE recipes.name=$recipe_name");
+                    LEFT JOIN recipe_image ON recipe_image.recipe_id = recipes.id WHERE recipes.name='".$recipe_name."'");
 
 
 
-                /*DB::table('recipes')
+               /*$recipes= DB::table('recipes')
                 ->leftjoin('recipe_image','recipes.id','=','recipe_image.recipe_id')
                 ->select('recipes.*','recipe_image.image')
                 ->where('recipes.name','=',$recipe_name)
                 ->get();*/
+
+            return view('Frontend.recipe.recipes',array('recipes' => $recipes,'categories'=>$categories));
+        }
+        else if(!empty($ingredient)){
+
+            $categories = category::all();
+            $recipes=DB::select("SELECT recipes.*,recipe_image.image,ingredients.name(SELECT count(id) FROM likes WHERE likes.recipe_id=recipes.id) as num_of_likes,
+                    (SELECT count(id) FROM comment WHERE comment.recipe_id=recipes.id) as num_of_comments FROM recipes
+                    LEFT JOIN recipe_image ON recipe_image.recipe_id = recipes.id
+                    LEFT JOIN ingredients ON ingredients.recipe_id=recipes.id
+                    WHERE ingredients.name IN ($ingredient)");
+
+
+
+            /*$recipes= DB::table('recipes')
+             ->leftjoin('recipe_image','recipes.id','=','recipe_image.recipe_id')
+             ->select('recipes.*','recipe_image.image')
+             ->where('recipes.name','=',$recipe_name)
+             ->get();*/
 
             return view('Frontend.recipe.recipes',array('recipes' => $recipes,'categories'=>$categories));
         }
@@ -217,6 +239,13 @@ class RecipeController extends Controller{
         print_r($recipes);
         die;*/
 
+    }
+    public function search_recipe(){
+        $categories = category::all();
+        $recipes=DB::select("SELECT recipes.*,recipe_image.image,(SELECT count(id) FROM likes WHERE likes.recipe_id=recipes.id) as num_of_likes,
+                    (SELECT count(id) FROM comment WHERE comment.recipe_id=recipes.id) as num_of_comments FROM recipes
+                    LEFT JOIN recipe_image ON recipe_image.recipe_id = recipes.id  LIMIT 12");
+        return view('frontend.recipe.search',array('recipes' => $recipes,'categories'=>$categories));
     }
     public function view_recipe($id){
         /*$categories = category::all();
