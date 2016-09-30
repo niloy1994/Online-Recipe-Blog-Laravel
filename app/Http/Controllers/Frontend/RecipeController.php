@@ -190,11 +190,12 @@ class RecipeController extends Controller{
         else if(!empty($ingredient)){
 
             $categories = category::all();
-            $recipes=DB::select("SELECT recipes.*,recipe_image.image,ingredients.name(SELECT count(id) FROM likes WHERE likes.recipe_id=recipes.id) as num_of_likes,
+            $ingredients = join("','",$ingredient);
+            $recipes=DB::select("SELECT recipes.*,recipe_image.image,(SELECT count(id) FROM likes WHERE likes.recipe_id=recipes.id) as num_of_likes,
                     (SELECT count(id) FROM comment WHERE comment.recipe_id=recipes.id) as num_of_comments FROM recipes
                     LEFT JOIN recipe_image ON recipe_image.recipe_id = recipes.id
                     LEFT JOIN ingredients ON ingredients.recipe_id=recipes.id
-                    WHERE ingredients.name IN ($ingredient)");
+                    WHERE ingredients.name IN ('$ingredients')");
 
 
 
