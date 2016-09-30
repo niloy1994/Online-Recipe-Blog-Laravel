@@ -14,8 +14,8 @@
 						<h1>Welcome to SocialChef!</h1>
 						<p>SocialChef is the ultimate <strong>cooking social community</strong>, where recipes come to life. Wanna know what you will gain by joining us? Lorem ipsum dolor sit amet, this is some teaser text.</p>
 						<p>You will win awesome prizes, make new friends and share delicious recipes. </p>
-						<a href="register.html" class="button white more medium">Join our community</a>
-						<p>Already a member? Click <a href="login.html">here</a> to login.</p>
+						<a href="{{URL::to('/sign_up')}}" class="button white more medium">Join our community</a>
+						<p>Already a member? Click <a href="{{URL::to('/login')}}">here</a> to login.</p>
 					</article>
 
 					<!--search recipes widget-->
@@ -73,7 +73,7 @@
 							<div class="one-sixth">
 								<div class="container">
 									<i class="ico i-members"></i>
-									<span class="title dynamic-number" data-dnumber="1730">0</span>
+									<span class="title dynamic-number" data-dnumber="{{$total_member[0]->num_of_members}}">0</span>
 									<span class="subtitle">members</span>
 								</div>
 							</div>
@@ -83,7 +83,7 @@
 							<div class="one-sixth">
 								<div class="container">
 									<i class="ico i-recipes"></i>
-									<span class="title dynamic-number" data-dnumber="1250">0</span>
+									<span class="title dynamic-number" data-dnumber="{{$total_recipe[0]->num_of_recipes}}">0</span>
 									<span class="subtitle">recipes</span>
 								</div>
 							</div>
@@ -93,7 +93,7 @@
 							<div class="one-sixth">
 								<div class="container">
 									<i class="ico i-photos"></i>
-									<span class="title dynamic-number" data-dnumber="5300">0</span>
+									<span class="title dynamic-number" data-dnumber="{{$total_photo[0]->total_count}}">0</span>
 									<span class="subtitle">photos</span>
 								</div>
 							</div>
@@ -103,7 +103,7 @@
 							<div class="one-sixth">
 								<div class="container">
 									<i class="ico i-posts"></i>
-									<span class="title dynamic-number" data-dnumber="2300">0</span>
+									<span class="title dynamic-number" data-dnumber="{{$total_blog[0]->num_of_blogs}}">0</span>
 									<span class="subtitle">forum posts</span>
 								</div>
 							</div>
@@ -113,7 +113,7 @@
 							<div class="one-sixth">
 								<div class="container">
 									<i class="ico i-comment"></i>
-									<span class="title dynamic-number" data-dnumber="7400">0</span>
+									<span class="title dynamic-number" data-dnumber="{{$total_comment[0]->num_of_comments}}">0</span>
 									<span class="subtitle">comments</span>
 								</div>
 							</div>
@@ -123,14 +123,14 @@
 							<div class="one-sixth">
 								<div class="container">
 									<i class="ico i-articles"></i>
-									<span class="title dynamic-number" data-dnumber="1700">0</span>
+									<span class="title dynamic-number" data-dnumber="{{$total_blog[0]->num_of_blogs}}">0</span>
 									<span class="subtitle">articles</span>
 								</div>
 							</div>
 							<!--//item-->
 
 							<div class="cta">
-								<a href="login.html" class="button big">Join us!</a>
+								<a href="{{URL::to('/sign_up')}}" class="button big">Join us!</a>
 							</div>
 						</div>
 						<!--//row-->
